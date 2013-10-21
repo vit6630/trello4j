@@ -1,9 +1,6 @@
 package org.trello4j;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.InputStream;
-import java.util.List;
+import com.google.gson.reflect.TypeToken;
 
 import org.junit.Test;
 import org.trello4j.model.Board;
@@ -11,7 +8,10 @@ import org.trello4j.model.Checklist;
 import org.trello4j.model.TrelloType;
 import org.trello4j.model.Type;
 
-import com.google.gson.reflect.TypeToken;
+import java.io.InputStream;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -99,7 +99,7 @@ public class TrelloObjectFactoryImplTest {
 
         Checklist.CheckItem firstCheckItem = checklist.getCheckItems().get(0);
         assertEquals("First checkitem", firstCheckItem.getName());
-        assertEquals("check", firstCheckItem.getType());
+        assertEquals("check", firstCheckItem.getState());
         assertEquals(8588, firstCheckItem.getPos(), 0);
 
         json.close();

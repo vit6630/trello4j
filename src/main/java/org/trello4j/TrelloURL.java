@@ -6,7 +6,8 @@ package org.trello4j;
  */
 public class TrelloURL {
 
-	public static final String BOARD_URL = "https://api.trello.com/1/boards/{0}";
+    //TODO split into sections
+    public static final String BOARD_URL = "https://api.trello.com/1/boards/{0}";
 	public static final String BOARD_ACTIONS_URL = "https://api.trello.com/1/boards/{0}/actions";
 	public static final String ACTION_URL = "https://api.trello.com/1/actions/{0}";
 	public static final String ORGANIZATION_URL = "https://api.trello.com/1/organizations/{0}";
@@ -63,7 +64,10 @@ public class TrelloURL {
 	public static final String TOKENS_URL = "https://api.trello.com/1/tokens/{0}";
 	public static final String TOKENS_MEMBER_URL = "https://api.trello.com/1/tokens/{0}/member";
 	public static final String ORGANIZATION_MEMBERS_URL = "https://api.trello.com/1/organizations/{0}/members";
-	private static final String PATH_PARAM_ARG_PREFIX = "\\{";
+
+    public static final String CHECKLIST_POST_URL = "https://api.trello.com/1/checklists/{0}/checkItems";
+
+    private static final String PATH_PARAM_ARG_PREFIX = "\\{";
 	private static final String PATH_PARAM_ARG_SUFFIX = "\\}";
 	private static final String KEY_QUERY_PARAM = "?key=";
 	private static final String TOKEN_QUERY_PARAM = "&token=";

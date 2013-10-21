@@ -131,7 +131,7 @@ Now you got two options:
 <tr><td>PUT /1/checklists/[checklist_id]                                      </td><td>TODO</td></tr>
 <tr><td>PUT /1/checklists/[checklist_id]/name                                 </td><td>TODO</td></tr>
 <tr><td>POST /1/checklists                                                    </td><td>TODO</td></tr>
-<tr><td>POST /1/checklists/[checklist_id]/checkItems                          </td><td>TODO</td></tr>
+<tr><td>POST /1/checklists/[checklist_id]/checkItems                          </td><td>IMPLEMENTED</td></tr>
 <tr><td>DELETE /1/checklists/[checklist_id]/checkItems/[idCheckItem]          </td><td>TODO</td></tr>
 
 <tr><th colspan="2">Lists</th></tr>

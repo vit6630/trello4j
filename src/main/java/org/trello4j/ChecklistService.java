@@ -48,4 +48,12 @@ public interface ChecklistService {
 	 * @return the check items by checklist
 	 */
 	java.util.List<CheckItem> getCheckItemsByChecklist(String checklistId);
+
+    /**
+     * @param CheckListId
+     * @param itemName
+     * @param itemChecked
+     * @return the added check item
+     */
+    CheckItem postCheckItem(String checkListId, String itemName, Boolean itemChecked);
 }

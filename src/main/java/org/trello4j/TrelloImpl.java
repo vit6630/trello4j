@@ -1,12 +1,20 @@
 package org.trello4j;
 
 import com.google.gson.reflect.TypeToken;
-import org.trello4j.model.*;
-import org.trello4j.model.Board.Prefs;
-import org.trello4j.model.Card.Attachment;
-import org.trello4j.model.Checklist.CheckItem;
 
-import javax.net.ssl.HttpsURLConnection;
+import org.trello4j.model.Action;
+import org.trello4j.model.Board;
+import org.trello4j.model.Board.Prefs;
+import org.trello4j.model.Card;
+import org.trello4j.model.Card.Attachment;
+import org.trello4j.model.Checklist;
+import org.trello4j.model.Checklist.CheckItem;
+import org.trello4j.model.Member;
+import org.trello4j.model.Notification;
+import org.trello4j.model.Organization;
+import org.trello4j.model.Token;
+import org.trello4j.model.Type;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * The Class TrelloImpl.
@@ -493,12 +503,29 @@ public class TrelloImpl implements Trello {
 		}, doPost(url, keyValueMap));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.trello4j.ListService#getList(java.lang.String)
-	 */
-	@Override
+    @Override
+    public CheckItem postCheckItem(String checkListId, String itemName, Boolean itemChecked) {
+        validateObjectId(checkListId);
+
+        final String url = TrelloURL
+                .create(apiKey, TrelloURL.CHECKLIST_POST_URL, checkListId)
+                .token(token)
+                .build();
+        Map<String, String> keyValueMap = new HashMap<String, String>();
+        keyValueMap.put("name", itemName);
+        keyValueMap.put("checked", itemChecked.toString());
+
+
+        return trelloObjFactory.createObject(new TypeToken<CheckItem>() {
+        }, doPost(url, keyValueMap));
+    }
+
+    /*
+         * (non-Javadoc)
+         *
+         * @see org.trello4j.ListService#getList(java.lang.String)
+         */
+    @Override
 	public org.trello4j.model.List getList(final String listId) {
 		validateObjectId(listId);
 
@@ -553,9 +580,9 @@ public class TrelloImpl implements Trello {
 	}
 
 	/*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 * 
-	 * @see org.trello4j.Trello#getType(java.lang.String)
+	 * @see org.trello4j.Trello#getState(java.lang.String)
 	 */
 	@Override
 	public Type getType(String idOrName) {
