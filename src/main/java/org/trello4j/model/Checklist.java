@@ -79,6 +79,10 @@ public class Checklist extends TrelloObject {
             return state;
         }
 
+        public boolean getStateBoolean() {
+            return state.equals("complete");
+        }
+
         public void setState(String state) {
             this.state = state;
         }

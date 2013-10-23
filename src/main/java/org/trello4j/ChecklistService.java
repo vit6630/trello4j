@@ -7,53 +7,51 @@ import org.trello4j.model.Checklist.CheckItem;
 
 /**
  * The Interface ChecklistService.
- * 
+ *
  * @author joel
  */
 public interface ChecklistService {
 
-	/**
-	 * Get checklist by given id.
-	 * 
-	 * @param checklistId
-	 *            the checklist id
-	 * @return the checklist
-	 */
-	Checklist getChecklist(String checklistId, String... filter);
-
-	/**
-	 * Gets the board by checklist.
-	 * 
-	 * @param checklistId
-	 *            the checklist id
-	 * @return the board by checklist
-	 */
-	Board getBoardByChecklist(String checklistId, String... filter);
-
-	/**
-	 * Gets the card by checklist.
-	 * 
-	 * @param checklistId
-	 *            the checklist id
-	 * @return the card by checklist
-	 */
-	java.util.List<Card> getCardByChecklist(String checklistId,
-			String... filter);
-
-	/**
-	 * Gets the check items by checklist.
-	 * 
-	 * @param checklistId
-	 *            the checklist id
-	 * @return the check items by checklist
-	 */
-	java.util.List<CheckItem> getCheckItemsByChecklist(String checklistId);
+    /**
+     * Get checklist by given id.
+     *
+     * @param checklistId the checklist id
+     * @return the checklist
+     */
+    Checklist getChecklist(String checklistId, String... filter);
 
     /**
-     * @param CheckListId
+     * Gets the board by checklist.
+     *
+     * @param checklistId the checklist id
+     * @return the board by checklist
+     */
+    Board getBoardByChecklist(String checklistId, String... filter);
+
+    /**
+     * Gets the card by checklist.
+     *
+     * @param checklistId the checklist id
+     * @return the card by checklist
+     */
+    java.util.List<Card> getCardByChecklist(String checklistId,
+                                            String... filter);
+
+    /**
+     * Gets the check items by checklist.
+     *
+     * @param checklistId the checklist id
+     * @return the check items by checklist
+     */
+    java.util.List<CheckItem> getCheckItemsByChecklist(String checklistId);
+
+    /**
+     * @param checkListId
      * @param itemName
      * @param itemChecked
      * @return the added check item
      */
-    CheckItem postCheckItem(String checkListId, String itemName, Boolean itemChecked);
+    CheckItem postCheckItem(String checkListId, String itemName, Boolean itemChecked, String pos);
+
+    void deleteCheckItem(String checkListId, String checkItemId);
 }
