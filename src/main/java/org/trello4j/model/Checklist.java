@@ -1,5 +1,8 @@
 package org.trello4j.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +31,11 @@ import java.util.List;
  * }
  * </code>
  */
-public class Checklist extends TrelloObject {
+public class CheckList extends TrelloObject implements Parcelable {
 
-    private String name;
-
-    private String idBoard;
-
-    private java.util.List<CheckItem> checkItems = new ArrayList<CheckItem>();
+    protected String name;
+    protected String idBoard;
+    protected java.util.List<CheckItem> checkItems = new ArrayList<CheckItem>();
 
     public String getName() {
         return name;
@@ -60,43 +61,41 @@ public class Checklist extends TrelloObject {
         this.checkItems = checkItems;
     }
 
-    public class CheckItem extends TrelloObject {
+    public static final Parcelable.Creator<CheckList> CREATOR = new Parcelable.Creator<CheckList>() {
 
-        private String name;
-        private String state;
-        private double pos;
-
-
-        public String getName() {
-            return name;
+        public CheckList createFromParcel(Parcel source) {
+            return new CheckList(source);
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public CheckList[] newArray(int size) {
+            throw new UnsupportedOperationException();
         }
+    };
 
-        public String getState() {
-            return state;
-        }
-
-        public boolean getStateBoolean() {
-            return state.equals("complete");
-        }
-
-        public void setStateBoolean(boolean _state) {
-            this.state = _state ? "complete" : "incomplete";
-        }
-
-        public void setState(String state) {
-            this.state = state;
-        }
-
-        public double getPos() {
-            return pos;
-        }
-
-        public void setPos(double pos) {
-            this.pos = pos;
-        }
+    @Override
+    public int describeContents() {
+        return 0;  // не трогать
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(getId());
+        dest.writeString(name);
+        dest.writeString(idBoard);
+        dest.writeList(checkItems);
+    }
+
+    private CheckList(Parcel source) {
+        setId(source.readString());
+        name = source.readString();
+        idBoard = source.readString();
+
+        checkItems = new ArrayList<CheckItem>();
+        source.readList(checkItems, CheckItem.class.getClassLoader());
+    }
+
+    public CheckList() {
+    }
+
 }
+

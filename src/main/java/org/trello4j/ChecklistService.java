@@ -2,8 +2,8 @@ package org.trello4j;
 
 import org.trello4j.model.Board;
 import org.trello4j.model.Card;
-import org.trello4j.model.Checklist;
-import org.trello4j.model.Checklist.CheckItem;
+import org.trello4j.model.CheckItem;
+import org.trello4j.model.CheckList;
 
 /**
  * The Interface ChecklistService.
@@ -18,7 +18,7 @@ public interface ChecklistService {
      * @param checklistId the checklist id
      * @return the checklist
      */
-    Checklist getChecklist(String checklistId, String... filter);
+    CheckList getChecklist(String checklistId, String... filter);
 
     /**
      * Gets the board by checklist.

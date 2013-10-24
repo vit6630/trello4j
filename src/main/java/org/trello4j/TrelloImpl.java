@@ -4,7 +4,6 @@ import com.google.gson.reflect.TypeToken;
 import org.trello4j.model.*;
 import org.trello4j.model.Board.Prefs;
 import org.trello4j.model.Card.Attachment;
-import org.trello4j.model.Checklist.CheckItem;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedInputStream;
@@ -110,14 +109,14 @@ public class TrelloImpl implements Trello {
      * @see org.trello4j.BoardService#getChecklistByBoard(java.lang.String)
      */
     @Override
-    public List<Checklist> getChecklistByBoard(String boardId) {
+    public List<CheckList> getChecklistByBoard(String boardId) {
         validateObjectId(boardId);
 
         final String url = TrelloURL
                 .create(apiKey, TrelloURL.BOARD_CHECKLISTS_URL, boardId)
                 .token(token)
                 .build();
-        return trelloObjFactory.createObject(new TypeToken<List<Checklist>>() {
+        return trelloObjFactory.createObject(new TypeToken<List<CheckList>>() {
         }, doGet(url));
     }
 
@@ -424,7 +423,7 @@ public class TrelloImpl implements Trello {
      * @see org.trello4j.CardService#getChecklistByCard(java.lang.String)
      */
     @Override
-    public List<Checklist> getChecklistByCard(final String cardId) {
+    public List<CheckList> getChecklistByCard(final String cardId) {
         validateObjectId(cardId);
 
         final String url = TrelloURL
@@ -432,7 +431,7 @@ public class TrelloImpl implements Trello {
                 .token(token)
                 .build();
 
-        return trelloObjFactory.createObject(new TypeToken<List<Checklist>>() {
+        return trelloObjFactory.createObject(new TypeToken<List<CheckList>>() {
         }, doGet(url));
     }
 
@@ -570,7 +569,7 @@ public class TrelloImpl implements Trello {
      * @see org.trello4j.ChecklistService#getChecklist(java.lang.String)
      */
     @Override
-    public Checklist getChecklist(String checklistId, final String... filter) {
+    public CheckList getChecklist(String checklistId, final String... filter) {
         validateObjectId(checklistId);
 
         final String url = TrelloURL
@@ -579,7 +578,7 @@ public class TrelloImpl implements Trello {
                 .filter(filter)
                 .build();
 
-        return trelloObjFactory.createObject(new TypeToken<Checklist>() {
+        return trelloObjFactory.createObject(new TypeToken<CheckList>() {
         }, doGet(url));
     }
 

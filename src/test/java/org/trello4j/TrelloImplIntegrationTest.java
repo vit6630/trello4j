@@ -245,11 +245,11 @@ public class TrelloImplIntegrationTest {
         String checklistId = "4f92b89ea73738db6cdd4ed7";
 
         // WHEN
-        Checklist checklist = new TrelloImpl(API_KEY, API_TOKEN).getChecklist(checklistId);
+        CheckList _checklist = new TrelloImpl(API_KEY, API_TOKEN).getChecklist(checklistId);
 
         // THEN
-        assertNotNull("Oops, checklist list is null", checklist);
-        assertEquals("Checklist id should match", checklistId, checklist.getId());
+        assertNotNull("Oops, checklist list is null", _checklist);
+        assertEquals("Checklist id should match", checklistId, _checklist.getId());
     }
 
     @Test
@@ -261,7 +261,7 @@ public class TrelloImplIntegrationTest {
         String my_token = "10cd4a6342549bed26f1ccba642a2a5c56f1060d6acfd2c2e29e09f35693eb24";
 
         // WHEN
-        List<Checklist.CheckItem> items = new TrelloImpl(my_key, my_token).getCheckItemsByChecklist(checklistId);
+        List<CheckItem> items = new TrelloImpl(my_key, my_token).getCheckItemsByChecklist(checklistId);
 
         // THEN
         assertNotNull("Oops, checklist items is null", items);
@@ -328,7 +328,6 @@ public class TrelloImplIntegrationTest {
         assertNotNull("Oops, type is null", type);
         assertEquals("Incorrect trello type", TrelloType.ORGANIZATION, type.getType());
     }
-
 
     /**
      * Checks for board with id.
