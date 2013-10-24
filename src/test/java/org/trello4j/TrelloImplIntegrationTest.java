@@ -270,30 +270,30 @@ public class TrelloImplIntegrationTest {
     }
 
 
-    @Test
-    public void shoulCreateAndReturnNewCheckedItem() {
-        // GIVEN
-        String checklistId = "526042416375af0239002caf";
-
-        String my_key = "0309b9c7ed1cd689f145c7afae128515";
-        String my_token = "10cd4a6342549bed26f1ccba642a2a5c56f1060d6acfd2c2e29e09f35693eb24";
-        // WHEN
-        Checklist.CheckItem item = new TrelloImpl(my_key, my_token).postCheckItem(checklistId, "ItemForDel2", false, "top");
-
-        // THEN
-        assertNotNull("Oops, checklist items is null", item);
-
-        //TODO implement removing code
-    }
+//    @Test
+//    public void shoulCreateAndReturnNewCheckedItem() {
+//        // GIVEN
+//        String checklistId = "526042416375af0239002caf";
+//
+//        String my_key = "0309b9c7ed1cd689f145c7afae128515";
+//        String my_token = "10cd4a6342549bed26f1ccba642a2a5c56f1060d6acfd2c2e29e09f35693eb24";
+//        // WHEN
+//        Checklist.CheckItem item = new TrelloImpl(my_key, my_token).postCheckItem(checklistId, "ItemForDel2", false, "top");
+//
+//        // THEN
+//        assertNotNull("Oops, checklist items is null", item);
+//
+//        //TODO implement removing code
+//    }
 
     @Test
     public void shoulDeleteCheckedItem() {
         // GIVEN
-        String checklistId = "526042416375af0239002caf";
-        String checkItemId = "5268252720663fcd0e0005a6";
+        String checklistId = "52604264c272550742000057";
+        String checkItemId = "526042679df466911a00226e";
 
-        String my_key = "0309b9c7ed1cd689f145c7afae128515";
-        String my_token = "10cd4a6342549bed26f1ccba642a2a5c56f1060d6acfd2c2e29e09f35693eb24";
+        String my_key = "c355f9b70aed504e7a262272436dd8e8";
+        String my_token = "841d5f0213fe0ca7666667d82a227675e739c35699c303eb0401d4e08dd5b24d";
         // WHEN
         new TrelloImpl(my_key, my_token).deleteCheckItem(checklistId, checkItemId);
 

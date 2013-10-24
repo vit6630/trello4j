@@ -494,7 +494,7 @@ public class TrelloImpl implements Trello {
     }
 
     @Override
-    public CheckItem postCheckItem(String checkListId, String itemName, Boolean itemChecked, String pos) {
+    public CheckItem postCheckItem(String checkListId, CheckItem item) {
         validateObjectId(checkListId);
 
         final String url = TrelloURL
@@ -502,9 +502,9 @@ public class TrelloImpl implements Trello {
                 .token(token)
                 .build();
         Map<String, String> keyValueMap = new HashMap<String, String>();
-        keyValueMap.put("name", itemName);
-        keyValueMap.put("checked", itemChecked.toString());
-        keyValueMap.put("pos", pos);
+        keyValueMap.put("name", item.getName());
+        keyValueMap.put("checked", String.valueOf(item.getStateBoolean()));
+        keyValueMap.put("pos", String.valueOf(item.getPos()));
 
 
         return trelloObjFactory.createObject(new TypeToken<CheckItem>() {
@@ -1220,7 +1220,7 @@ public class TrelloImpl implements Trello {
     private InputStream getWrappedInputStream(InputStream is, boolean gzip)
             throws IOException {
         /*
-		 * TODO: What about this? ---------------------- "Java clients which use
+         * TODO: What about this? ---------------------- "Java clients which use
 		 * java.util.zip.GZIPInputStream() and wrap it with a
 		 * java.io.BufferedReader() to read streaming API data will encounter
 		 * buffering on low volume streams, since GZIPInputStream's available()

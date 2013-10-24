@@ -83,6 +83,10 @@ public class Checklist extends TrelloObject {
             return state.equals("complete");
         }
 
+        public void setStateBoolean(boolean _state) {
+            this.state = _state ? "complete" : "incomplete";
+        }
+
         public void setState(String state) {
             this.state = state;
         }

@@ -47,11 +47,9 @@ public interface ChecklistService {
 
     /**
      * @param checkListId
-     * @param itemName
-     * @param itemChecked
      * @return the added check item
      */
-    CheckItem postCheckItem(String checkListId, String itemName, Boolean itemChecked, String pos);
+    CheckItem postCheckItem(String checkListId, CheckItem item);
 
     void deleteCheckItem(String checkListId, String checkItemId);
 }
