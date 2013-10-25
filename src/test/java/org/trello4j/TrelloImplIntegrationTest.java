@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.trello4j.model.*;
 import org.trello4j.model.Board.PERMISSION_TYPE;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -269,6 +270,43 @@ public class TrelloImplIntegrationTest {
         assertFalse("Check item State is Empty", items.get(0).getState().isEmpty());
     }
 
+
+    @Test
+    public void tst() {
+
+        CheckList test = new CheckList();
+
+
+        Field[] fields = CheckList.class.getDeclaredFields();
+
+
+        for (Field f : fields) {
+
+//            if(f.getName()=="name")
+//            {
+//                try {
+//                    f.set(test, "Bla-bla-bla");
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//                }
+//            }
+
+            if (f.getType().equals(String.class)) {
+                int k = 0;
+            }
+
+            if (f.getType().toString().equals(List.class.toString())) {
+                int k1 = 0;
+            }
+
+
+            String s = f.getType().toString();
+            String s1 = String.class.toString();
+            int j = 0;
+        }
+
+        int i = 0;
+    }
 
 //    @Test
 //    public void shoulCreateAndReturnNewCheckedItem() {

@@ -502,7 +502,7 @@ public class TrelloImpl implements Trello {
                 .build();
         Map<String, String> keyValueMap = new HashMap<String, String>();
         keyValueMap.put("name", item.getName());
-        keyValueMap.put("checked", String.valueOf(item.getStateBoolean()));
+        keyValueMap.put("state", String.valueOf(item.getStateBoolean()));
         keyValueMap.put("pos", String.valueOf(item.getPos()));
 
 
@@ -523,11 +523,33 @@ public class TrelloImpl implements Trello {
         doDelete(url);
     }
 
+
+    @Override
+    public CheckItem updateCheckItem(String cardId, String checkListId, CheckItem item) {
+        validateObjectId(cardId);
+        validateObjectId(checkListId);
+        validateObjectId(item.getId());
+
+        final String url = TrelloURL
+                .create(apiKey, TrelloURL.CHECKITEM_UPDATE_URL, cardId, checkListId, item.getId())
+                .token(token)
+                .build();
+        Map<String, String> keyValueMap = new HashMap<String, String>();
+        keyValueMap.put("name", item.getName());
+        keyValueMap.put("state", String.valueOf(item.getStateBoolean()));
+        keyValueMap.put("pos", String.valueOf(item.getPos()));
+
+
+        return trelloObjFactory.createObject(new TypeToken<CheckItem>() {
+        }, doPut(url, keyValueMap));
+
+    }
+
     /*
-                 * (non-Javadoc)
-                 *
-                 * @see org.trello4j.ListService#getList(java.lang.String)
-                 */
+                     * (non-Javadoc)
+                     *
+                     * @see org.trello4j.ListService#getList(java.lang.String)
+                     */
     @Override
     public org.trello4j.model.List getList(final String listId) {
         validateObjectId(listId);

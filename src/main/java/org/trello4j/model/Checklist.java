@@ -6,36 +6,43 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A Trello checklist.
- * <p/>
- * <code>
- * {
- * "id":"4f92b89ea73738db6cdd4ed7",
- * "name":"Checklist",
- * "idBoard":"4f92b80ba73738db6cdd4309",
- * "checkItems":[
- * {
- * "id":"4f92b97cf9e2e2ae362df9ab",
- * "name":"Base for filtering",
- * "state":"check",
- * "pos":8588
- * },
- * {
- * "id":"4f92b99b5c92e5cd28006ee8",
- * "name":"GET /1/boards/[board_id]/actions?filter",
- * "state":"check",
- * "pos":12882
- * }
- * ]
- * }
- * </code>
- */
 public class CheckList extends TrelloObject implements Parcelable {
 
-    protected String name;
+    //PARCELABLE
+    public static final Parcelable.Creator<CheckList> CREATOR = new Parcelable.Creator<CheckList>() {
+
+        public CheckList createFromParcel(Parcel source) {
+            return new CheckList(source);
+        }
+
+        public CheckList[] newArray(int size) {
+            throw new UnsupportedOperationException();
+        }
+    };
+    public String name;
     protected String idBoard;
     protected java.util.List<CheckItem> checkItems = new ArrayList<CheckItem>();
+    private String idCard;
+
+    public CheckList() {
+    }
+
+    private CheckList(Parcel source) {
+        setId(source.readString());
+        name = source.readString();
+        idBoard = source.readString();
+        idCard = source.readString();
+        checkItems = new ArrayList<CheckItem>();
+        source.readList(checkItems, CheckItem.class.getClassLoader());
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
 
     public String getName() {
         return name;
@@ -61,17 +68,6 @@ public class CheckList extends TrelloObject implements Parcelable {
         this.checkItems = checkItems;
     }
 
-    public static final Parcelable.Creator<CheckList> CREATOR = new Parcelable.Creator<CheckList>() {
-
-        public CheckList createFromParcel(Parcel source) {
-            return new CheckList(source);
-        }
-
-        public CheckList[] newArray(int size) {
-            throw new UnsupportedOperationException();
-        }
-    };
-
     @Override
     public int describeContents() {
         return 0;  // не трогать
@@ -82,19 +78,8 @@ public class CheckList extends TrelloObject implements Parcelable {
         dest.writeString(getId());
         dest.writeString(name);
         dest.writeString(idBoard);
+        dest.writeString(idCard);
         dest.writeList(checkItems);
-    }
-
-    private CheckList(Parcel source) {
-        setId(source.readString());
-        name = source.readString();
-        idBoard = source.readString();
-
-        checkItems = new ArrayList<CheckItem>();
-        source.readList(checkItems, CheckItem.class.getClassLoader());
-    }
-
-    public CheckList() {
     }
 
 }
