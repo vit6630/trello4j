@@ -3,11 +3,11 @@ package org.trello4j.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class CheckItem extends TrelloObject implements Parcelable {
+public class CheckItem extends TrelloObject implements Parcelable, Comparable<CheckItem> {
 
     protected String name;
     protected String state;
-    protected double pos;
+    protected Double pos;
 
 
     public String getName() {
@@ -34,11 +34,11 @@ public class CheckItem extends TrelloObject implements Parcelable {
         this.state = state;
     }
 
-    public double getPos() {
+    public Double getPos() {
         return pos;
     }
 
-    public void setPos(double pos) {
+    public void setPos(Double pos) {
         this.pos = pos;
     }
 
@@ -101,5 +101,10 @@ public class CheckItem extends TrelloObject implements Parcelable {
         temp = Double.doubleToLongBits(pos);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    @Override
+    public int compareTo(CheckItem another) {
+        return this.getPos().compareTo(another.getPos());
     }
 }
