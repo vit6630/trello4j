@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CheckList extends TrelloObject implements Parcelable {
@@ -61,6 +62,7 @@ public class CheckList extends TrelloObject implements Parcelable {
     }
 
     public List<CheckItem> getCheckItems() {
+        Collections.sort(checkItems);
         return checkItems;
     }
 
