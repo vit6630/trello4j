@@ -503,7 +503,12 @@ public class TrelloImpl implements Trello {
         Map<String, String> keyValueMap = new HashMap<String, String>();
         keyValueMap.put("name", item.getName());
         keyValueMap.put("state", String.valueOf(item.getStateBoolean()));
-        keyValueMap.put("pos", String.valueOf(item.getPos()));
+
+        String pos = item.getPos() == 0
+                ? "top"
+                : String.valueOf(item.getPos());
+
+        keyValueMap.put("pos", pos);
 
 
         return trelloObjFactory.createObject(new TypeToken<CheckItem>() {
