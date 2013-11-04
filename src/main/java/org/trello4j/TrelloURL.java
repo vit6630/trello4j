@@ -68,6 +68,8 @@ public class TrelloURL {
     public static final String CHECKITEM_POST_URL = "https://api.trello.com/1/checklists/{0}/checkItems";
     public static final String CHECKITEM_DELETE_URL = "https://api.trello.com/1/checklists/{0}/checkItems/{1}";
     public static final String CHECKITEM_UPDATE_URL = "https://api.trello.com/1/cards/{0}/checklist/{1}/checkItem/{2}";
+    public static final String CHECKITEM_UPDATE_STATE_URL = "https://api.trello.com/1/cards/{0}/checklist/{1}/checkItem/{2}/state";
+    public static final String CHECKITEM_UPDATE_POS_URL = "https://api.trello.com/1/cards/{0}/checklist/{1}/checkItem/{2}/pos";
 
     private static final String PATH_PARAM_ARG_PREFIX = "\\{";
     private static final String PATH_PARAM_ARG_SUFFIX = "\\}";

@@ -54,4 +54,8 @@ public interface ChecklistService {
     void deleteCheckItem(String checkListId, String checkItemId);
 
     CheckItem updateCheckItem(String cardId, String checkListId, CheckItem item);
+
+    CheckItem updateCheckItemState(String cardId, String checkListId, CheckItem item);
+
+    CheckItem updateCheckItemPos(String cardId, String checkListId, CheckItem item);
 }

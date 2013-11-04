@@ -550,6 +550,44 @@ public class TrelloImpl implements Trello {
 
     }
 
+    @Override
+    public CheckItem updateCheckItemPos(String cardId, String checkListId, CheckItem item) {
+        validateObjectId(cardId);
+        validateObjectId(checkListId);
+        validateObjectId(item.getId());
+
+        final String url = TrelloURL
+                .create(apiKey, TrelloURL.CHECKITEM_UPDATE_POS_URL, cardId, checkListId, item.getId())
+                .token(token)
+                .build();
+        Map<String, String> keyValueMap = new HashMap<String, String>();
+        keyValueMap.put("idChecklist", checkListId);
+        keyValueMap.put("idCheckItem", item.getId());
+        keyValueMap.put("value", String.valueOf(item.getPos()));
+
+        return trelloObjFactory.createObject(new TypeToken<CheckItem>() {
+        }, doPut(url, keyValueMap));
+    }
+
+    @Override
+    public CheckItem updateCheckItemState(String cardId, String checkListId, CheckItem item) {
+        validateObjectId(cardId);
+        validateObjectId(checkListId);
+        validateObjectId(item.getId());
+
+        final String url = TrelloURL
+                .create(apiKey, TrelloURL.CHECKITEM_UPDATE_STATE_URL, cardId, checkListId, item.getId())
+                .token(token)
+                .build();
+        Map<String, String> keyValueMap = new HashMap<String, String>();
+        keyValueMap.put("idChecklist", checkListId);
+        keyValueMap.put("idCheckItem", item.getId());
+        keyValueMap.put("value", item.getState());
+
+        return trelloObjFactory.createObject(new TypeToken<CheckItem>() {
+        }, doPut(url, keyValueMap));
+    }
+
     /*
                      * (non-Javadoc)
                      *
