@@ -126,7 +126,7 @@ public class Card extends TrelloObject implements Parcelable {
         attachments = new ArrayList<Attachment>();
         in.readList(attachments, null);
         labels = new ArrayList<Label>();
-        in.readList(labels, null);
+        in.readList(labels, Label.class.getClassLoader());
         url = in.readString();
         pos = in.readDouble();
     }
@@ -251,7 +251,7 @@ public class Card extends TrelloObject implements Parcelable {
         };
     }
 
-    public class Label implements Parcelable {
+    public static class Label implements Parcelable {
 
         private String color;
         private String name;
@@ -286,7 +286,7 @@ public class Card extends TrelloObject implements Parcelable {
             dest.writeString(name);
         }
 
-        public final Parcelable.Creator<Label> CREATOR = new Parcelable.Creator<Label>() {
+        public static final Parcelable.Creator<Label> CREATOR = new Parcelable.Creator<Label>() {
             public Label createFromParcel(Parcel in) {
                 return new Label(in);
             }
