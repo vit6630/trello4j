@@ -4,7 +4,7 @@ package org.trello4j.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Board extends TrelloObject implements Parcelable {
+public class Board extends TrelloObject implements Parcelable, ITrelloNamedObject {
 
     public enum PERMISSION_TYPE {
         PUBLIC,

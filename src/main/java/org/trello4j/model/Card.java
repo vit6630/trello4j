@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Card extends TrelloObject implements Parcelable {
+public class Card extends TrelloObject implements Parcelable, ITrelloNamedObject {
 
     // TODO: idChecklists
     // TODO: checkItemStates

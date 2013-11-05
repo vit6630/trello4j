@@ -3,7 +3,7 @@ package org.trello4j.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class CheckItem extends TrelloObject implements Parcelable, Comparable<CheckItem> {
+public class CheckItem extends TrelloObject implements Parcelable, Comparable<CheckItem>, ITrelloNamedObject {
 
     protected String name;
     protected String state;

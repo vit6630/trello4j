@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CheckList extends TrelloObject implements Parcelable {
+public class CheckList extends TrelloObject implements Parcelable, ITrelloNamedObject {
 
     //PARCELABLE
     public static final Parcelable.Creator<CheckList> CREATOR = new Parcelable.Creator<CheckList>() {

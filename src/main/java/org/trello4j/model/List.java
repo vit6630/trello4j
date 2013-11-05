@@ -16,7 +16,7 @@ import android.os.Parcelable;
  *
  * @author joel
  */
-public class List extends TrelloObject implements Parcelable {
+public class List extends TrelloObject implements Parcelable, ITrelloNamedObject {
 
     /**
      * The name.
